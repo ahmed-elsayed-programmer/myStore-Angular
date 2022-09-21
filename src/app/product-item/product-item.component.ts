@@ -8,6 +8,7 @@ import { Product } from '../Module/Product';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product?: Product;
+  amount: number = 0;
 
   constructor() {}
 
