@@ -19,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     CartComponent,
     ConfirmationComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
