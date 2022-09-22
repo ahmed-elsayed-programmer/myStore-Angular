@@ -1,4 +1,4 @@
 <div class="product-index">
-  <app-product-item *ngFor="let item of proList" [product]="item">
+  <app-product-item *ngFor="let item of proList" [product]="item" [productId]="+(item.id)">
   </app-product-item>
 </div>

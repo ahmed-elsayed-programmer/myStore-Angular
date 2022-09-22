@@ -1,11 +1,16 @@
-<div class="product-container">
-  <img class="product-image" [src]="product?.url" width="100">
-  <h3>{{product?.name}}</h3>
-  <p>{{'$' + product?.price}}</p>
-  <p>{{product?.description}}</p>
+<div class="product-container" *ngIf="product">
+  <img class="product-image" [src]="product.url" width="100">
+  <h3>{{product.name}}</h3>
+  <p>{{'$' + product.price}}</p>
+  <p>{{product.description}}</p>
+  <form>
+    <select [(value)]="amount">
+      <option *ngFor="let op of amountOptions" class="select-input" [value]="op">
+        {{op}}
+      </option>
+    </select>
 
-
-
-  <button>Add to cart</button>
+    <button (click)="addToCart(amount , product)">Add to cart</button>
+  </form>
 
 </div>

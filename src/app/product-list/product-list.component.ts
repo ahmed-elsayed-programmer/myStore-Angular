@@ -10,19 +10,10 @@ import { ProductService } from '../service/product.service';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  proList: Product[] = [
-    { name: '', id: 1, price: 0, description: '', url: '' },
-  ];
-  constructor(
-    private productService: ProductService,
-    private cartService: CartItemsService
-  ) {}
+  proList: Product[] = [];
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.productService.getProduct().subscribe((res) => (this.proList = res));
-  }
-
-  addToCart(item: CartItem) {
-    this.cartService.addItem(item);
   }
 }
