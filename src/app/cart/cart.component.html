@@ -12,6 +12,7 @@
             <input type="number" class="form-conrol" min="0" name="amount" [ngModel]="i.value.count"
               (ngModelChange)="chnageTotal(i.value , $event )">
           </form>
+          <button (click)="reomove(i.value)" class="btn btn-danger">Remove</button>
         </div>
       </div>
       <h1>Total : {{total.toFixed(2)}}</h1>

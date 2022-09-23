@@ -10,11 +10,13 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProduct(id?: number): Observable<Product[]> {
-    if (id)
-      return this.http
-        .get<Product[]>(this.jsionURL)
-        .pipe(map((item) => item.filter((i) => i.id === id)));
+  getProduct(): Observable<Product[]> {
     return this.http.get<Product[]>(this.jsionURL);
+  }
+
+  getitem(id: number) {
+    return this.http
+      .get<Product[]>(this.jsionURL)
+      .pipe(map((products) => products.filter((product) => product.id === id)));
   }
 }

@@ -42,8 +42,11 @@ export class CartComponent implements OnInit {
     );
   }
 
+  reomove(cart: CartItem) {
+    this.cartService.remove(cart.id);
+  }
+
   submit(name: string, address: string, credit: string) {
-    alert(this.isValid);
     if (this.isValid()) {
       this.cartService.clear();
       this.route.navigate(['cart/submit', { name: name, total: this.total }]);

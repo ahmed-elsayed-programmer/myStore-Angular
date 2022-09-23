@@ -1,6 +1,8 @@
-<div class="product-container " *ngIf="product">
-  <img class="product-image" [routerLink]="['/product/' + productId]" [src]="product.url" width="100">
-  <div class="d-flex flex-column align-items-center">
+<div class="product-container " [ngClass]="{'flex-row justify-content-evenly row' : fullView }" *ngIf="product">
+  <img class="product-image" [ngClass]="{'w-25' : fullView }" [routerLink]="['/product/' + productId , {productId}]"
+    [src]="product.url" width="100">
+  <div class="d-flex flex-column align-items-center"
+    [ngClass]="{'justify-content-evenly product-details col-5' : fullView }">
 
     <h3>{{product.name}}</h3>
     <p>{{'$' + product.price}}</p>
@@ -12,9 +14,11 @@
         </option>
       </select>
 
-      <button [disabled]="form.invalid" class="btn btn-primary my-3" (click)="addToCart(amount , product)">Add to
+      <button [disabled]="form.invalid" class="btn btn-primary m-3" (click)="addToCart(amount , product)">Add to
         cart</button>
-      <button class="btn btn-primary" (click)="reomveFromCart(product.id)">remove</button>
+      <button class="btn btn-danger" (click)="reomveFromCart(product.id)">remove</button>
+      <br>
+      <button *ngIf="fullView" routerLink="/products" class="btn btn-secondary">Back to products list </button>
     </form>
   </div>
 

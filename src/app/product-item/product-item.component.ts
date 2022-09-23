@@ -32,7 +32,11 @@ export class ProductItemComponent implements OnInit {
     }
 
     if (this.fullView) {
-      this.productService.getProduct(this.productId);
+      this.productService
+        .getitem(this.productId)
+        .subscribe((item) =>
+          item.length !== 0 ? (this.product = item[0]) : undefined
+        );
     }
   }
 
