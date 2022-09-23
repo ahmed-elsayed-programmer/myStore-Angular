@@ -1,6 +1,12 @@
-# MyStore
+# MyStore overview
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+MyStore is Angular app about simple shopping app
+allow users many things like
+
+- view list of products
+- add product to cart
+- make order
+- checkout process
 
 ## Development server
 
