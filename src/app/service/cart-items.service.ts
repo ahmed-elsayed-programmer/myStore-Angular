@@ -5,15 +5,21 @@ import { CartItem } from '../Module/cart-item';
   providedIn: 'root',
 })
 export class CartItemsService {
-  cart: CartItem[] = [];
+  cart: Map<number, CartItem>;
 
-  constructor() {}
+  constructor() {
+    this.cart = new Map<number, CartItem>();
+  }
 
-  getItems() {
+  getItems(): Map<number, CartItem> {
     return this.cart;
   }
 
+  clear() {
+    this.cart.clear();
+  }
+
   addItem(item: CartItem) {
-    this.cart.push(item);
+    this.cart.set(item.id, item);
   }
 }

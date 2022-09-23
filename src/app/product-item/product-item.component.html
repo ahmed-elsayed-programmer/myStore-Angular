@@ -1,16 +1,17 @@
-<div class="product-container" *ngIf="product">
+<div class="product-container " *ngIf="product">
   <img class="product-image" [src]="product.url" width="100">
   <h3>{{product.name}}</h3>
   <p>{{'$' + product.price}}</p>
   <p>{{product.description}}</p>
-  <form>
-    <select [(value)]="amount">
+  <form #form="ngForm">
+    <select name="amount" class="form-select" required minlength="1" [(ngModel)]="amount">
       <option *ngFor="let op of amountOptions" class="select-input" [value]="op">
         {{op}}
       </option>
     </select>
 
-    <button (click)="addToCart(amount , product)">Add to cart</button>
+    <button [disabled]="form.invalid" class="btn btn-primary my-3" (click)="addToCart(amount , product)">Add to
+      cart</button>
   </form>
 
 </div>

@@ -1,2 +1,41 @@
-<p>cart works!</p>
-<h1 *ngFor="let i of item">{{i}}</h1>
+<div class="container p-3">
+  <div class="row">
+    <div class="col-6">
+      <div *ngFor="let i of cartService.getItems() | keyvalue" class="cart-item border">
+        <img [src]="i.value.url" alt="">
+        <div class="cart-item-details">
+          <h3>{{i.value.name}}</h3>
+          <p>{{i.value.price}}</p>
+          <p>{{i.value.count}}</p>
+          <form action="">
+            <label class="form-label">Amount</label>
+            <input type="number" class="form-conrol" min="0" name="amount" [ngModel]="i.value.count"
+              (ngModelChange)="chnageTotal(i.value , $event )">
+          </form>
+        </div>
+      </div>
+      <h1>Total : {{total.toFixed(2)}}</h1>
+    </div>
+    <div class="col-6">
+      <form action="">
+
+        <div class="mb-3">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="name">
+
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          <input type="text" class="form-control" name="address" [(ngModel)]="address">
+
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Credit card</label>
+          <input type="text" class="form-control" name="credit" [(ngModel)]="credit">
+
+        </div>
+        <button class="btn btn-primary" (click)="submit(name , address , credit)">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
