@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from '../Module/Product';
 import { CartItemsService } from '../service/cart-items.service';
+import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-product-item',
@@ -13,12 +15,26 @@ export class ProductItemComponent implements OnInit {
 
   amount: number = 0;
   amountOptions: number[];
+  fullView: boolean = false;
 
-  constructor(private cartService: CartItemsService) {
+  constructor(
+    private cartService: CartItemsService,
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {
     this.amountOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.productId) {
+      this.productId = Number(this.route.snapshot.paramMap.get('productId'));
+      this.fullView = true;
+    }
+
+    if (this.fullView) {
+      this.productService.getProduct(this.productId);
+    }
+  }
 
   addToCart(amount: number, pro: Product) {
     this.cartService.addItem({
@@ -28,5 +44,9 @@ export class ProductItemComponent implements OnInit {
       price: pro.price,
       count: amount,
     });
+  }
+
+  reomveFromCart(id: number) {
+    this.cartService.remove(id);
   }
 }

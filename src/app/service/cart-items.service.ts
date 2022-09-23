@@ -22,4 +22,8 @@ export class CartItemsService {
   addItem(item: CartItem) {
     this.cart.set(item.id, item);
   }
+
+  remove(id: number) {
+    this.cart.delete(id);
+  }
 }

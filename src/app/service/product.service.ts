@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../Module/Product';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProduct(): Observable<Product[]> {
+  getProduct(id?: number): Observable<Product[]> {
+    if (id)
+      return this.http
+        .get<Product[]>(this.jsionURL)
+        .pipe(map((item) => item.filter((i) => i.id === id)));
     return this.http.get<Product[]>(this.jsionURL);
   }
 }
