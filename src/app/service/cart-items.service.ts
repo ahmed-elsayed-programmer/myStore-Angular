@@ -25,6 +25,7 @@ export class CartItemsService {
 
   remove(id: number) {
     if (this.cart.has(id)) {
+      alert(this.cart.get(id)?.name + ' removed form cart');
       this.cart.delete(id);
     }
   }

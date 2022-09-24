@@ -13,7 +13,6 @@ export class ProductItemComponent implements OnInit {
   @Input() product?: Product;
   @Input() productId?: number;
 
-  @Output() removeFromCart: EventEmitter<string>;
   @Output() addTCart: EventEmitter<string>;
 
   amount: number = 0;
@@ -27,7 +26,6 @@ export class ProductItemComponent implements OnInit {
   ) {
     this.amountOptions = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     this.addTCart = new EventEmitter<string>();
-    this.removeFromCart = new EventEmitter<string>();
   }
 
   ngOnInit(): void {
@@ -64,6 +62,5 @@ export class ProductItemComponent implements OnInit {
 
   reomveFromCart(id: number) {
     this.cartService.remove(id);
-    this.removeFromCart.emit('product removed');
   }
 }

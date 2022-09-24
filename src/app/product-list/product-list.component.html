@@ -1,8 +1,7 @@
 <div class="product-container  ">
 
   <div class="product-index ">
-    <app-product-item *ngFor="let item of proList" [product]="item" [productId]="+(item.id)" (addTCart)="msg($event)"
-      (removeFromCart)="msg($event)">
+    <app-product-item *ngFor="let item of proList" [product]="item" [productId]="+(item.id)" (addTCart)="msg($event)">
     </app-product-item>
   </div>
 
