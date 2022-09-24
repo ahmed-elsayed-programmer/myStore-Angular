@@ -1,12 +1,14 @@
 # MyStore overview
 
 MyStore is Angular app about simple shopping app
-allow users many things like
 
-- view list of products
+It features following functionality:
+
+- show a list of products
+- show a product details
 - add product to cart
+- checkout the order
 - make order
-- checkout process
 
 ## Development server
 
