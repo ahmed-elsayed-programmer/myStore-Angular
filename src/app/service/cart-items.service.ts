@@ -20,10 +20,14 @@ export class CartItemsService {
   }
 
   addItem(item: CartItem) {
+    alert(item.name + ' added to The cart ');
     this.cart.set(item.id, item);
   }
 
   remove(id: number) {
-    this.cart.delete(id);
+    if (this.cart.has(id)) {
+      alert(this.cart.get(id)?.name + ' removed');
+      this.cart.delete(id);
+    }
   }
 }

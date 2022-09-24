@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartItem } from '../Module/cart-item';
 import { CartItemsService } from '../service/cart-items.service';
@@ -13,6 +14,19 @@ export class CartComponent implements OnInit {
   name: string = '';
   address: string = '';
   credit: string = '';
+
+  nameFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+  ]);
+  addressFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+  ]);
+  creditFormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(10),
+  ]);
 
   constructor(public cartService: CartItemsService, private route: Router) {
     this.getTotal();
@@ -36,9 +50,9 @@ export class CartComponent implements OnInit {
   isValid(): boolean {
     return (
       this.total != 0 &&
-      this.name.length > 2 &&
-      this.address.length > 6 &&
-      this.credit.length > 16
+      this.nameFormControl.valid &&
+      this.addressFormControl.valid &&
+      this.creditFormControl.valid
     );
   }
 
@@ -51,5 +65,9 @@ export class CartComponent implements OnInit {
       this.cartService.clear();
       this.route.navigate(['cart/submit', { name: name, total: this.total }]);
     }
+  }
+
+  errorMsg(text: string) {
+    return `invalid ${text}`;
   }
 }

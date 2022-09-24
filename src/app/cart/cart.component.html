@@ -18,22 +18,32 @@
       <h1>Total : {{total.toFixed(2)}}</h1>
     </div>
     <div class="col-6">
-      <form action="">
+      <form class="needs-validation">
 
         <div class="mb-3">
           <label class="form-label">Full Name</label>
-          <input type="text" class="form-control" name="name" [(ngModel)]="name">
+          <input type="text" [formControl]="  nameFormControl" required class="form-control" name="name"
+            [(ngModel)]="name">
+          <div *ngIf="nameFormControl.invalid" class="small text-danger">
+            {{errorMsg('Full name')}}
+          </div>
 
         </div>
         <div class="mb-3">
           <label class="form-label">Address</label>
-          <input type="text" class="form-control" name="address" [(ngModel)]="address">
+          <input type="text" required [formControl]="addressFormControl" class="form-control" name="address"
+            [(ngModel)]="address">
+          <div class="small text-danger" *ngIf="addressFormControl.invalid">
+            {{errorMsg('address')}}
+          </div>
 
         </div>
         <div class="mb-3">
           <label class="form-label">Credit card</label>
-          <input type="text" class="form-control" name="credit" [(ngModel)]="credit">
-
+          <input type="text" [formControl]="creditFormControl" class="form-control" name="credit" [(ngModel)]="credit">
+          <div class="small text-danger" *ngIf="creditFormControl.invalid">
+            {{errorMsg('Credit card number')}}
+          </div>
         </div>
         <button class="btn btn-primary" (click)="submit(name , address , credit)">Submit</button>
       </form>
