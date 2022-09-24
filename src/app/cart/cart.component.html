@@ -24,7 +24,8 @@
           <label class="form-label">Full Name</label>
           <input type="text" [formControl]="  nameFormControl" required class="form-control" name="name"
             [(ngModel)]="name">
-          <div *ngIf="nameFormControl.invalid" class="small text-danger">
+          <div *ngIf="nameFormControl.invalid && (nameFormControl.dirty || nameFormControl.touched)"
+            class="small text-danger">
             {{errorMsg('Full name')}}
           </div>
 
@@ -33,15 +34,18 @@
           <label class="form-label">Address</label>
           <input type="text" required [formControl]="addressFormControl" class="form-control" name="address"
             [(ngModel)]="address">
-          <div class="small text-danger" *ngIf="addressFormControl.invalid">
+          <div class="small text-danger"
+            *ngIf="addressFormControl.invalid && (addressFormControl.dirty || addressFormControl.touched)">
             {{errorMsg('address')}}
           </div>
 
         </div>
         <div class="mb-3">
           <label class="form-label">Credit card</label>
-          <input type="text" [formControl]="creditFormControl" class="form-control" name="credit" [(ngModel)]="credit">
-          <div class="small text-danger" *ngIf="creditFormControl.invalid">
+          <input type="number" [formControl]="creditFormControl" class="form-control" name="credit"
+            [(ngModel)]="credit">
+          <div class="small text-danger"
+            *ngIf="creditFormControl.invalid && (creditFormControl.dirty || creditFormControl.touched)">
             {{errorMsg('Credit card number')}}
           </div>
         </div>

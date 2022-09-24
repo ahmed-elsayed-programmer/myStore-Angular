@@ -14,7 +14,8 @@
         </option>
       </select>
 
-      <button [disabled]="form.invalid" class="btn btn-primary m-3" (click)="addToCart(amount , product)">Add to
+      <button [disabled]="form.invalid" [ngClass]="{ 'disabled': amount == 0 }" class="btn btn-primary m-3"
+        (click)="addToCart(amount , product)">Add to
         cart</button>
       <button class="btn btn-danger" (click)="reomveFromCart(product.id)">remove</button>
       <br>

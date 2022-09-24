@@ -43,6 +43,12 @@ export class ProductItemComponent implements OnInit {
           item.length !== 0 ? (this.product = item[0]) : undefined
         );
     }
+
+    if (this.cartService.cart.has(this.productId)) {
+      this.cartService
+        .getItems()
+        .forEach((value) => (this.amount = value.count));
+    }
   }
 
   addToCart(amount: number, pro: Product) {

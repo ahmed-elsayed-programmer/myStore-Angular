@@ -20,7 +20,7 @@ export class CartItemsService {
   }
 
   addItem(item: CartItem) {
-    this.cart.set(item.id, item);
+    if (item.count > 0) this.cart.set(item.id, item);
   }
 
   remove(id: number) {
