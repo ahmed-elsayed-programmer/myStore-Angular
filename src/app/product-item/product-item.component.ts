@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../Module/Product';
 import { CartItemsService } from '../service/cart-items.service';
@@ -13,6 +13,9 @@ export class ProductItemComponent implements OnInit {
   @Input() product?: Product;
   @Input() productId?: number;
 
+  @Output() removeFromCart: EventEmitter<string>;
+  @Output() addTCart: EventEmitter<string>;
+
   amount: number = 0;
   amountOptions: number[];
   fullView: boolean = false;
@@ -23,6 +26,8 @@ export class ProductItemComponent implements OnInit {
     private productService: ProductService
   ) {
     this.amountOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    this.addTCart = new EventEmitter<string>();
+    this.removeFromCart = new EventEmitter<string>();
   }
 
   ngOnInit(): void {
@@ -48,9 +53,11 @@ export class ProductItemComponent implements OnInit {
       price: pro.price,
       count: amount,
     });
+    this.addTCart.emit(this.product?.name + ' add to cart');
   }
 
   reomveFromCart(id: number) {
     this.cartService.remove(id);
+    this.removeFromCart.emit('product removed');
   }
 }

@@ -58,6 +58,7 @@ export class CartComponent implements OnInit {
 
   reomove(cart: CartItem) {
     this.cartService.remove(cart.id);
+    this.getTotal();
   }
 
   submit(name: string, address: string, credit: string) {
